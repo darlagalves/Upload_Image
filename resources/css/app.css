@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    margin: 0;
+}
+
+.sidebar {
+    position: fixed; /* Mantém a sidebar fixa */
+    top: 0;
+    left: 0;
+    width: 100px;
+    max-width: 200px;
+    height: 100vh; /* Ocupa toda a altura da tela */
+    background-color: #FFC0CB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.sidebar svg {
+    margin-bottom: 20px;
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+
+.content {
+    margin-left: 120px; /* Garante que o conteúdo não sobreponha a sidebar */
+    padding: 20px;
+    flex: 1;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.icons svg {
+    width: 40px;
+    height: 40px;
+    fill: currentColor;
+}

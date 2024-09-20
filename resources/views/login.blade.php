@@ -86,7 +86,7 @@
                 </div>
 
                 <!-- Botão de Login -->
-                <button type="submit" class="btn botaologin" style="visibility:hidden">Login</button>
+                <button type="submit" class="btn botaologin" style="display:none;">Login</button>
                 <a href="{{ route('doctor_dashboard') }}"  class="btn botaocadastrar">Login</a>
             </form>
             <div>

@@ -11,72 +11,73 @@
     <!-- CSS Personalizado -->
     <style>
         .botaocadastrar {
-            border-radius: 40px;
-            border: 2px solid gray;
-            margin-left: 150px;
-            margin-top: 40px;
-        }
-        .boxprincipal {
-            background: linear-gradient(135deg, #ddaafa 0%, #7800A3 100%);
-            background-attachment: fixed;
-        }
+    border-radius: 40px;
+    border: 2px solid gray;
+    margin-left: 150px;
+    margin-top: 40px;
+}
+.boxprincipal {
+    background: linear-gradient(135deg, #ddaafa 0%, #7800A3 100%);
+    background-attachment: fixed;
+}
 
-        .box1 {
-            border-radius: 40px;
-            background-color: #FFFFFF;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 120px;
-            margin-bottom: 100px;
-            width: 400px;
-            height: auto;
-            padding-bottom: 50px;
-        }
+.box1 {
+    border-radius: 40px;
+    background-color: #FFFFFF;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 120px;
+    margin-bottom: 100px;
+    width: 400px;
+    height: auto;
+    padding-bottom: 50px;
+}
 
-        .box2 {
-            margin-top: 50px;
-            padding-top: 50px;
-        }
+.box2 {
+    margin-top: 50px;
+    padding-top: 50px;
+}
 
-        .titulologin {
-            color: #7800A3;
-            text-align: center;
-            padding: 10px;
-        }
+.titulologin {
+    color: #7800A3;
+    text-align: center;
+    padding: 10px;
+}
 
-        .botaologin {
-            color: #FFFFFF;
-            background-color: #7800A3;
-            width: 200px;
-            margin-left: 100px;
-            margin-top: 40px;
-        }
+.botaologin {
+    color: #FFFFFF;
+    background-color: #7800A3;
+    width: 200px;
+    margin-left: 100px;
+    margin-top: 40px;
+}
 
-        .botaologin:hover {
-            border: 1px solid #7800A3;
-            border-radius: 10px;
-            color: black;
-        }
+.botaologin:hover {
+    border: 1px solid #7800A3;
+    border-radius: 10px;
+    color: black;
+}
 
-        .titulologar {
-            font-family: sans-serif;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 18px;
-            color: #6D6D6D;
-        }
+.titulologar {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    color: #6D6D6D;
+}
 
-        .modal {
-            z-index: 1050 !important;
-        }
-        .modal-backdrop {
-            z-index: 1040 !important;
-            background-color: rgba(0, 0, 0, 0.5) !important;
-        }
-        .modal.show {
-            display: block !important;
-        }
+.modal {
+    z-index: 1050 !important;
+}
+.modal-backdrop {
+    z-index: 1040 !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.modal.show {
+    display: block !important;
+}
+
     </style>
 </head>
 <body class="boxprincipal">
@@ -123,7 +124,7 @@
                 </div>
 
                 <!-- Botão de Cadastro -->
-                <button type="submit" class="btn botaologin" style="visibility:hidden" id="submitBtn" disabled onclick="window.location.href = '{{ route('login') }}'">Cadastrar</button>
+                <button type="submit" class="btn botaologin" style="visibility:hidden" id="submitBtn" disabled>Cadastrar</button>
                 <a href="{{ route('login') }}"  class="btn botaocadastrar">Cadastro</a>
             </form>
         </div>
@@ -155,11 +156,12 @@
 <!-- Script para habilitar/desabilitar o botão de cadastro -->
 <script>
     const termsCheck = document.getElementById('termsCheck');
-    const submitBtn = document.getElementById('submitBtn');
+const submitBtn = document.getElementById('submitBtn');
 
-    termsCheck.addEventListener('change', function () {
-        submitBtn.disabled = !this.checked;
-    });
+termsCheck.addEventListener('change', function () {
+    submitBtn.disabled = !this.checked;
+});
+
 </script>
 </body>
 </html>
