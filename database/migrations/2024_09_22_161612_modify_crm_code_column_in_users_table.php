@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('images')) {
-            Schema::create('images', function (Blueprint $table) {
-                $table->id();
-                $table->string('path');
-                $table->timestamps();  // Cria `created_at` e `updated_at`
-            });
-        }
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('crm_code')->nullable()->change(); 
+        });
     }
 
     /**
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('crm_code')->nullable(false)->change(); 
+        });
     }
 };

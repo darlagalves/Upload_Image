@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Cadastrar Pacientes</title>
 
     <!-- Bootstrap CSS -->
@@ -155,35 +156,55 @@
     <main class="content">
         <div class="container">
             <h2>Cadastro de Pacientes</h2>
-            <form action="/cadastrar-paciente" method="POST">
+            <form action="{{ route('create_pacient') }}" method="post">
+                @csrf
+                <input type="hidden" name="doctor_id" value="{{ Auth::id() }}">
                 <div class="form-column">
-                    <label for="nome">Nome:</label>
-                    <input type="name" id="nome" name="nome" required>
+                    <label for="name">Nome:</label>
+                    <input type="name" id="name" name="name" required>
 
-                    <label for="idade">Idade:</label>
-                    <input type="number" id="idade" name="idade" required>
+                    <label for="age">Idade:</label>
+                    <input type="number" id="age" name="age" required>
 
-                    <label for="peso">Peso:</label>
-                    <input type="number" id="peso" name="peso" required>
+                    <label for="height">Altura:</label>
+                    <input type="number" id="height" name="height" required>
                 </div>
                 <div class="form-column">
-                    <label for="altura">Altura:</label>
-                    <input type="number" id="altura" name="altura" required>
+                    <label for="weight">Peso:</label>
+                    <input type="number" id="weight" name="weight" required>
 
-                    <label for="reincidente">Reincidente:</label>
-                    <input type="text" id="reincidente" name="reincidente" required>
+                    <label for="relapses">Reincidente:</label>
+                    <input type="text" id="relapses" name="relapses" required>
 
-                    <label for="cor">Cor ou Raça:</label>
-                    <input type="text" id="cor" name="cor" required>
+                    <label for="race">Cor ou Raça:</label>
+                    <input type="text" id="race" name="race" required>
                 </div>
-                <button type="submit" style="display: none;">Cadastrar</button>
+                <button type="submit" >Cadastrar</button>
                 <a href="{{ route('pacient') }}" class="button1">Cadastrar</a>
             </form>
         </div>
     </main>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrKzEtKylqQQ7RmzoHAz4IzkZBgt+XLGpsBt7aGoAzFnWfjbwq+Nm5n9ebhpi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+    <script>
+        // Depois do carregamento da página
+document.addEventListener('DOMContentLoaded', function() {
+    // Verifique se o usuário está autenticado
+    fetch('/user-info') // Crie uma rota `/user-info` no seu back-end 
+        .then(response => response.json()) 
+        .then(data => {
+            if (data.user_id) { 
+                console.log('ID do usuário logado:', data.user_id); 
+            } else {
+                console.log('Usuário não logado'); 
+            }
+        })
+        .catch(error => console.error('Erro ao obter informações do usuário:', error));
+});
 
+    var_dump(race);
+    </script>
 </body>
 </html>

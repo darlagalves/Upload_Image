@@ -11,13 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('images')) {
-            Schema::create('images', function (Blueprint $table) {
-                $table->id();
-                $table->string('path');
-                $table->timestamps();  // Cria `created_at` e `updated_at`
-            });
-        }
+        //
     }
 
     /**
@@ -25,6 +19,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        //
     }
 };
