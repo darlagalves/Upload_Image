@@ -5,136 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Cadastrar Pacientes</title>
-
+    @vite('resources/css/app.css')
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <!-- CSS Personalizado -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            margin: 0;
-        }
-
-        .sidebar {
-            position: fixed; /* Mantém a sidebar fixa */
-            top: 0;
-            left: 0;
-            width: 100px;
-            max-width: 200px;
-            height: 100vh; /* Ocupa toda a altura da tela */
-            background-color: #FFC0CB;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 20px;
-        }
-
-        .sidebar svg {
-            margin-bottom: 20px;
-            width: 40px;
-            height: 40px;
-            color: white;
-        }
-
-        .content {
-            margin-left: 120px; /* Garante que o conteúdo não sobreponha a sidebar */
-            padding: 20px;
-            flex: 1;
-        }
-
-        .icons {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
-
-        .icons svg {
-            width: 40px;
-            height: 40px;
-            fill: currentColor;
-        }
-                
-
-
-        .card {
-            /* Estilo para o card */
-            margin-top: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
-        }
-
-        .card-img-top {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-
-        .card {
-            margin-top: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-        }
-
-        h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        form {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Duas colunas */
-            gap: 20px; /* Espaçamento entre colunas */
-        }
-
-        .form-column {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 5px;
-        }
-
-        input {
-            margin-bottom: 15px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            padding: 10px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            grid-column: span 2; /* O botão ocupa as duas colunas */
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .button1 {
-            padding: 10px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            grid-column: span 2; /* O botão ocupa as duas colunas */
-        }
-
-        .button1:hover {
-            background-color: #0056b3;
-        }
-    </style>
 </head>
-<body>
-
+<body class="body_cadastrarp">
     <div class="sidebar">
         <a href="#">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -152,59 +27,66 @@
             </svg>
         </a>
     </div>
-
     <main class="content">
-        <div class="container">
-            <h2>Cadastro de Pacientes</h2>
-            <form action="{{ route('create_pacient') }}" method="post">
-                @csrf
-                <input type="hidden" name="doctor_id" value="{{ Auth::id() }}">
-                <div class="form-column">
-                    <label for="name">Nome:</label>
-                    <input type="name" id="name" name="name" required>
-
-                    <label for="age">Idade:</label>
-                    <input type="number" id="age" name="age" required>
-
-                    <label for="height">Altura:</label>
-                    <input type="number" id="height" name="height" required>
-                </div>
-                <div class="form-column">
-                    <label for="weight">Peso:</label>
-                    <input type="number" id="weight" name="weight" required>
-
-                    <label for="relapses">Reincidente:</label>
-                    <input type="text" id="relapses" name="relapses" required>
-
-                    <label for="race">Cor ou Raça:</label>
-                    <input type="text" id="race" name="race" required>
-                </div>
-                <button type="submit" >Cadastrar</button>
-                <a href="{{ route('pacient') }}" class="button1">Cadastrar</a>
-            </form>
+    <div class="container_cadastrarp">
+        <!-- Avatar (Imagem ou ícone) -->
+        <div class="avatar">
+            <img src="images/pink-icon.png" alt="Avatar">
         </div>
+
+        <h2 class="h2_cadastrarp">Cadastro de Pacientes</h2>
+
+        <form class="form_cadastrarp" action="{{ route('create_pacient') }}" method="post">
+            @csrf
+            <input type="hidden" name="doctor_id" value="{{ Auth::id() }}">
+            <div class="form-column_cadastrarp">
+                <div class="form-group_cadastrarp">
+                    <label class="label_cadastrarp" for="name">Nome</label>
+                    <input class="input_cadastrarp" type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group_cadastrarp">
+                    <label class="label_cadastrarp" for="age">Idade</label>
+                    <input class="input_cadastrarp" type="number" id="age" name="age" required>
+                </div>
+
+                <div class="form-group_cadastrarp">
+                    <label class="label_cadastrarp" for="height">Altura (cm)</label>
+                    <input class="input_cadastrarp" type="number"  id="height" name="height" required>
+                </div>
+            </div>
+            <div class="form-column_cadastrarp">
+                <div class="form-group_cadastrarp">
+                    <label class="label_cadastrarp" for="weight">Peso (kg)</label>
+                    <input class="input_cadastrarp" type="number"  id="weight" name="weight" required>
+                </div>
+
+                <div class="form-group_cadastrarp">
+                    <label class="label_cadastrarp" for="relapses">Reincidente</label>
+                    <input class="input_cadastrarp" type="text" id="relapses" name="relapses" required>
+                </div>
+
+                <div class="form-group_cadastrarp">
+                    <label class="label_cadastrarp" for="race">Cor ou Raça</label>
+                    <input class="input_cadastrarp" type="text" id="race" name="race" required>
+                </div>
+            </div>
+
+            <div class="btn-center_cadastrarp">
+                <button class="button_cadastrarp" type="submit">Cadastrar</button>
+            </div>
+        </form>
+
+        <!-- Icone de coração -->
+        <div class="icon-heart">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#FF6F91" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.293l1.318-1.318a4.5 4.5 0 116.364 6.364l-7.682 7.682a.75.75 0 01-1.06 0L4.318 12.682a4.5 4.5 0 010-6.364z" />
+            </svg>
+        </div>
+    </div>
     </main>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    crossorigin="anonymous"></script>
-    <script>
-        // Depois do carregamento da página
-document.addEventListener('DOMContentLoaded', function() {
-    // Verifique se o usuário está autenticado
-    fetch('/user-info') // Crie uma rota `/user-info` no seu back-end 
-        .then(response => response.json()) 
-        .then(data => {
-            if (data.user_id) { 
-                console.log('ID do usuário logado:', data.user_id); 
-            } else {
-                console.log('Usuário não logado'); 
-            }
-        })
-        .catch(error => console.error('Erro ao obter informações do usuário:', error));
-});
-
-    var_dump(race);
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

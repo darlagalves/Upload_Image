@@ -12,18 +12,24 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-//Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
-
 
 Route::middleware('auth')->group(function () {
     // Rotas que exigem autenticação
-    Route::get('/doctor_dashboard', function () {
+    /*Route::get('/doctor_dashboard', function () {
         return view('doctor_dashboard');
-    })->name('doctor_dashboard');
+    })->name('doctor_dashboard');*/
+
+    Route::get('/doctor_dashboard', [PacientController::class, 'dashboard'])->name('doctor_dashboard');
+
     
-    Route::get('/edit_pacient', function () {
+    /*Route::get('/edit_pacient', function () {
         return view('pacient.edit_pacient');
-    })->name('edit_pacient');
+    })->name('edit_pacient');*/
+
+    // routes/web.php
+    Route::get('/pacient/{id}/edit', [PacientController::class, 'edit'])->name('pacient.edit_pacient');
+    Route::delete('/pacient/{id}', [PacientController::class, 'destroy'])->name('pacient.destroy');
+
     
     Route::get('/create_pacient', function () {
         return view('pacient.create_pacient');

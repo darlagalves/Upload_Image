@@ -1,45 +1,206 @@
-body {
+/* Estilos gerais */
+.body_cadastrarp {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #FFE4E1;
     display: flex;
     margin: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .sidebar {
-    position: fixed; /* Mantém a sidebar fixa */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100px;
+    width: 100px; 
     max-width: 200px;
-    height: 100vh; /* Ocupa toda a altura da tela */
-    background-color: #FFC0CB;
+    height: 100vh;
+    background-color: #FFB6C1; 
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
+    border-right: 2px solid #FF6F91; 
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+.sidebar a {
+    color: white; 
+    text-decoration: none; 
+    margin: 15px 0; 
+    text-align: center; 
+    transition: transform 0.2s; 
+}
+
+.sidebar a:hover {
+    transform: scale(1.1); 
 }
 
 .sidebar svg {
-    margin-bottom: 20px;
-    width: 40px;
-    height: 40px;
-    color: white;
+    width: 40px; 
+    height: 40px; 
 }
 
 .content {
-    margin-left: 120px; /* Garante que o conteúdo não sobreponha a sidebar */
+    margin-left: 100px;
     padding: 20px;
     flex: 1;
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
 }
 
-.icons {
-    display: flex;
-    justify-content: space-around;
+.container_cadastrarp {
+    width: 100%;
+    max-width: 90%; /* Aumenta a largura máxima */
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Aumenta o padding para dar mais espaço interno */
+    text-align: center;
+}
+
+.h2_cadastrarp {
+    color: #FF6F91;
+    font-size: 24px;
     margin-bottom: 20px;
 }
 
-.icons svg {
-    width: 40px;
-    height: 40px;
-    fill: currentColor;
+.form_cadastrarp {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-column_cadastrarp {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group_cadastrarp {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.label_cadastrarp {
+    display: block;
+    font-size: 14px;
+    color: #FF6F91;
+    margin-bottom: 5px;
+}
+
+.input_cadastrarp {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #FFB6C1;
+    background-color: #FFF5F8;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+}
+
+.input_cadastrarp:focus {
+    border-color: #FF6F91;
+}
+
+.btn-center_cadastrarp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    grid-column: span 2;
+}
+
+.button_cadastrarp {
+    width: 40%;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    background-color: #FF6F91;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    grid-column: span 2;
+}
+
+.button_cadastrarp:hover {
+    background-color: #FF3D68;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    background-color: #FF6F91;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+}
+
+.avatar img {
+    width: 70px;
+    height: 70px;
+}
+
+.icon-heart {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 0;
+    color: #FF6F91;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 1200px) {
+    .content {
+        margin-left: 150px;
+    }
+
+    .sidebar {
+        width: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .sidebar {
+        width: 60px;
+    }
+
+    .form_cadastrarp {
+        grid-template-columns: 1fr;
+    }
+
+    .button_cadastrarp {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        display: none;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 5px;
+    }
+
+    .container_cadastrarp {
+        padding: 10px;
+    }
+
+    .button_cadastrarp {
+        width: 100%;
+    }
 }

@@ -44,4 +44,24 @@ class PacientController extends Controller
 
         return redirect()->route('doctor_dashboard')->with('success', 'Paciente criado com sucesso.');
     }
+
+    public function dashboard()
+    {
+        $pacients = Pacient::all();
+        return view('doctor_dashboard', compact('pacients'));
+    }
+
+    public function edit($id)
+    {
+        $pacient = Pacient::findOrFail($id);
+        return view('pacient.edit_pacient', compact('pacient'));
+    }
+
+    public function destroy($id)
+    {
+        $pacient = Pacient::findOrFail($id);
+        $pacient->delete();
+        return redirect()->route('doctor_dashboard')->with('success', 'Paciente excluído com sucesso');
+    }
+
 }

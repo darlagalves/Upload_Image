@@ -4,10 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Card de Informações</title>
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
     <!-- CSS Personalizado -->
     <style>
         body {
@@ -61,15 +59,14 @@
         }
 
         .card {
-            /* Estilo para o card */
             margin-top: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-
-        .card-img-top {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+        .card-body {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .dropdown-menu {
@@ -103,7 +100,6 @@
             </svg>
         </a>
     </div>
-
     <main class="content">
     <div>
         <div class="input-group">
@@ -111,46 +107,41 @@
         <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
         </div>
     </div>
+	<div class="container mt-5">
+        <h1>Pacientes</h1>
+        <div class="row">
+            @foreach($pacients as $paciente)
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div>
+                                <h5 class="card-title">{{ $paciente->name }}</h5>
+                                <p class="card-text">{{ $paciente->doctor_id }}</p>
+                            </div>
+                            <div>
+                                <a href="{{ route('pacient.edit_pacient', $paciente->id) }}" class="btn btn-primary">Editar</a>
+                                <form action="{{ route('pacient.destroy', $paciente->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Excluir</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
     <div class="card">
             <div class="card-body">
             <a href="{{ route('pacient') }}"> <h5 class="card-title">Título do Card</h5></a>
                 <p class="card-text">Algumas informações úteis sobre o card. Pode ser uma descrição breve ou um texto mais longo com detalhes relevantes. </p>
                 <a href="#" class="btn btn-primary" style="display:none;">Saiba Mais</a>
-
-
-                <!-- Botão de Opções -->
                 
-                <div class="dropdown float-end" style="padding:8px;"><a href="{{ route('edit_pacient') }}" class="btn btn-primary">Editar</a></div>
                 <div class="dropdown float-end" style="padding:8px;"><a href="#" class="btn btn-danger">Excluir</a></div>
-                <div class="dropdown float-end" style="display:none;">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><button class="dropdown-item" type="button">Action</button></li>
-                        <li><button class="dropdown-item" type="button">Another action</button></li>
-                        <li><button class="dropdown-item" type="button">Something else here</button></li>
-                    </ul>
-                </div>
-
-
-
-                <!-- Botão de Opções -->
-                <div class="dropdown float-end" style="display:none;">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><button class="dropdown-item" type="button">Action</button></li>
-                        <li><button class="dropdown-item" type="button">Another action</button></li>
-                        <li><button class="dropdown-item" type="button">Something else here</button></li>
-                    </ul>
-                </div>
-
 
             </div>
         </div>
-
         <div class="dropup position-absolute bottom-0 end-0 rounded-circle m-5">
         <a href="{{ route('create_pacient') }}">   <button type="button" class="btn btn-info btn-lg dropdown-toggle hide-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-patch-plus" viewBox="0 0 16 16">
