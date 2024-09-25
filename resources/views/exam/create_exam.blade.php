@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página com Cards</title>
+    <title>Carregar Imagem</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
-        body {
+               body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     display: flex;
@@ -224,6 +224,11 @@ body {
     </style>
 </head>
 <body>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="sidebar">
         <a href="#">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -243,27 +248,26 @@ body {
     </div>
     <div class="container">
         <div class="upload-section">
-            <label for="file-upload" class="upload-button">
-                <div class="arrow-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8 12a.5.5 0 0 1-.5-.5V3.707L5.354 6.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 3.707V11.5a.5.5 0 0 1-.5.5z"/>
-                    </svg>
-                    <span class="add-image-text">Carregar Imagem</span>
+            <form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <label for="file-upload" class="upload-button">
+                    <div class="arrow-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 12a.5.5 0 0 1-.5-.5V3.707L5.354 6.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 3.707V11.5a.5.5 0 0 1-.5.5z"/>
+                        </svg>
+                        <span class="add-image-text">Carregar Imagem</span>
+                    </div>
+                </label>
+                <input type="file" id="file-upload" name="image" accept="image/*" style="display: none;" />
+                <div class="image-preview">
+                    <img id="preview" src="" alt="Imagem Carregada" style="display: none;" />
                 </div>
-            </label>
-            <input type="file" id="file-upload" accept="image/*" style="display: none;" />
-            <div class="image-preview">
-                <img id="preview" src="" alt="Imagem Carregada" style="display: none;" />
-            </div>
-            <button class="save-button">Salvar</button>
+                <button type="submit" class="save-button">Salvar</button>
+            </form>
         </div>
     </div>
 </body>
 <script>
-document.querySelector('.save-button').addEventListener('click', function() {
-    alert('Imagem salva com sucesso!');
-});
-
 document.getElementById('file-upload').addEventListener('change', function(event) {
     var reader = new FileReader();
     reader.onload = function() {
@@ -273,7 +277,5 @@ document.getElementById('file-upload').addEventListener('change', function(event
     }
     reader.readAsDataURL(event.target.files[0]);
 });
-
-
 </script>
 </html>

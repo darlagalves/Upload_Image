@@ -34,63 +34,78 @@
             color: white;
         }
 
-        .content {
-            margin-left: 120px; /* Garante que o conteúdo não sobreponha a sidebar */
-            padding: 20px;
-            flex: 1;
-        }
+        /* Ajuste no layout da página */
+.content {
+    margin-left: 120px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Centraliza os cards */
+}
 
-        .card {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 300px;
-            text-align: center;
-        }
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-        .card h2 {
-            background-color: #ffcccb;
-            padding: 10px;
-            border-radius: 8px 8px 0 0;
-            margin: -20px -20px 20px -20px;
-            color: #333;
-        }
+.card h2 {
+    background-color: #ffcccb;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    margin: -20px -20px 20px -20px;
+    color: #333;
+}
 
-        .ultrasound img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
+/* Define um tamanho fixo para as imagens e centraliza */
+.ultrasound img {
+    width: 250px;  /* Largura fixa */
+    height: 250px; /* Altura fixa */
+    object-fit: cover; /* Corta a imagem para preencher o espaço sem distorcer */
+    border-radius: 8px;
+    margin: 0 auto 20px; /* Centraliza e adiciona espaço embaixo */
+}
 
-        .icons {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
+/* Mais espaço entre os ícones */
+.icons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px; /* Aumenta o espaço entre os ícones e o restante do conteúdo */
+}
 
-        .icons svg {
-            width: 40px;
-            height: 40px;
-            fill: currentColor;
-        }
+.icons svg {
+    width: 40px;
+    height: 40px;
+    fill: currentColor;
+}
 
-        .notes{
-            border: 2px solid gray;
-            border-radius: 8px;
-        }
+/* Espaçamento maior para a área de notas */
+.notes {
+    border: 2px solid gray;
+    border-radius: 8px;
+    padding: 15px; /* Aumenta o espaço interno */
+    text-align: left;
+    margin-top: 20px;
+}
 
-        .notes p {
-            margin-bottom: 10px;
-            text-align: left;
-        }
+.notes p {
+    margin-bottom: 15px; /* Aumenta o espaço entre os parágrafos */
+}
 
-        .notes textarea {
-            width: 100%;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
+.notes textarea {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px; /* Espaçamento acima do textarea */
+}
+
+
         .fixed {
             width: 100px;
             max-width: 200px;
@@ -104,6 +119,7 @@
             height: 4.5rem; 
             color: white; /* Define a cor dos ícones como branco */
         }
+
         .floating-btn {
             position: fixed;
             bottom: 20px;
@@ -175,8 +191,6 @@
             text-decoration: none;
             cursor: pointer;
         }
-
-
     </style>
 </head>
 <body>
@@ -199,11 +213,12 @@
     </div>
 
     <div class="content">
-        <div class="card">
-            <h2>Imagem - data</h2>
-            <div class="ultrasound">
-                <img src="images/ultrassom-de-mama-1.webp" alt="Imagem de Ultrassom">
-            </div>
+        @foreach($images as $image)
+            <div class="card">
+                <h2>{{ $image->created_at->format('d/m/Y') }}</h2>
+                <div class="ultrasound">
+                    <img src="{{ asset('storage/images/' . $image->path) }}" alt="{{ $image->name }}">
+                </div>
             <div class="icons">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-clipboard-heart" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M5 1.5A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5v1A1.5 1.5 0 0 1 9.5 4h-3A1.5 1.5 0 0 1 5 2.5zm5 0a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5z"/>
@@ -217,9 +232,10 @@
                 </svg>
             </div>
             <div class="notes">
-                <p>Notas</p>
+                <p>{{ $image->network_result }}</p>
             </div>
         </div>
+        @endforeach
     </div>
     <div class="dropup position-absolute bottom-0 end-0 rounded-circle m-5">
         <a href="{{ route('create_exam') }}">

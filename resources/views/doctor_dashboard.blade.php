@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Card de Informações</title>
+    <title>Dashboard</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- CSS Personalizado -->
@@ -82,7 +82,19 @@
 
     </style>
 </head>
-<body>
+<script>
+        function setFormToDelete(id) {
+            // Lógica para definir o formulário a ser excluído
+            document.querySelector('.delete-form').setAttribute('data-id', id);
+        }
+
+        function confirmDelete(id) {
+            if (confirm('Tem certeza que deseja excluir este item?')) {
+                document.querySelector(`form[data-id='${id}']`).submit();
+            }
+        }
+</script>
+<body class="body_doctord">
     <div class="sidebar">
         <a href="#">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -102,10 +114,10 @@
     </div>
     <main class="content">
     <div>
-        <div class="input-group">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
-        </div>
+        <form method="GET" action="{{ route('doctor_dashboard') }}" class="input-group">
+            <input type="search" name="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <button type="submit" class="btn btn-outline-primary">Pesquisar</button>
+        </form>
     </div>
 	<div class="container mt-5">
         <h1>Pacientes</h1>
@@ -115,15 +127,20 @@
                     <div class="card">
                         <div class="card-body">
                             <div>
-                                <h5 class="card-title">{{ $paciente->name }}</h5>
+                                <!-- Nome do paciente como um link para a página com mais detalhes -->
+                                <a href="{{ route('pacient.pacient', $paciente->id) }}">
+                                    <h5 class="card-title">{{ $paciente->name }}</h5>
+                                </a>
                                 <p class="card-text">{{ $paciente->doctor_id }}</p>
                             </div>
                             <div>
                                 <a href="{{ route('pacient.edit_pacient', $paciente->id) }}" class="btn btn-primary">Editar</a>
-                                <form action="{{ route('pacient.destroy', $paciente->id) }}" method="POST" style="display:inline;">
+                                <form method="POST" class="delete-form" data-id="{{ $paciente->id }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Excluir</button>
+                                    <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $paciente->id }})">
+                                        Excluir
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -156,11 +173,12 @@
                 </li>
             </ul>
         </div>
+    </div>
     </main>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrKzEtKylqQQ7RmzoHAz4IzkZBgt+XLGpsBt7aGoAzFnWfjbwq+Nm5n9ebhpi" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrKzEtKylqQQ7RmzoHAz4IzkZBgt+XLGpsBt7aGoAzFnWfjbwq+Nm5n9ebhpi" crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrKzEtKylqQQ7RmzoHAz4IzkZBgt+XLGpsBt7aGoAzFnWfjbwq+Nm5n9ebhpi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrKzEtKylqQQ7RmzoHAz4IzkZBgt+XLGpsBt7aGoAzFnWfjbwq+Nm5n9ebhpi" crossorigin="anonymous"></script>
+        
 </body>
 </html>

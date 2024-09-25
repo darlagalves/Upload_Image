@@ -1,4 +1,10 @@
-/* Estilos gerais */
+.body_doctord {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    margin: 0;
+}
+
 .body_cadastrarp {
     font-family: Arial, sans-serif;
     background-color: #FFE4E1;
@@ -47,17 +53,17 @@
     padding: 20px;
     flex: 1;
     display: flex;
-    justify-content: center; /* Centraliza o conteúdo horizontalmente */
-    align-items: center; /* Centraliza o conteúdo verticalmente */
+    justify-content: center; 
+    align-items: center; 
 }
 
 .container_cadastrarp {
     width: 100%;
-    max-width: 90%; /* Aumenta a largura máxima */
+    max-width: 90%; 
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 20px; /* Aumenta o padding para dar mais espaço interno */
+    padding: 20px; 
     text-align: center;
 }
 
@@ -203,4 +209,40 @@
     .button_cadastrarp {
         width: 100%;
     }
+}
+
+/* Estilos para os cards */
+.cards1_pacient, .cards_pacient {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Aumenta o espaçamento entre os cards */
+    justify-content: center;
+}
+
+.card_pacient, .card_low_pacient {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 400px; /* Aumenta o tamanho máximo dos cards */
+    text-align: center;
+}
+
+.card_pacient h2, .card_low_pacient h2 {
+    color: #FF6F91;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card_pacient p, .card_low_pacient p {
+    color: #333;
+    font-size: 14px;
+}
+
+.card_low_pacient img {
+    width: 100%;
+    height: auto; /* Garante que a imagem mantenha a proporção */
+    border-radius: 10px;
+    margin-top: 10px;
 }

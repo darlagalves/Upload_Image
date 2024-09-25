@@ -155,30 +155,32 @@
     <main class="content">
         <div class="container">
             <h2>Edição de Dados do Paciente</h2>
-            <form action="/cadastrar-paciente" method="POST">
+            <form action="{{ route('pacient.update', $pacient->id) }}" method="POST">
+                @csrf
+                @method('PUT')
                 <div class="form-column">
                     <label for="nome">Nome:</label>
-                    <input type="name" id="nome" name="nome" required>
+                    <input type="name" id="nome" name="nome" value="{{ $pacient->name }}" required>
 
                     <label for="idade">Idade:</label>
-                    <input type="number" id="idade" name="idade" required>
+                    <input type="number" id="idade" name="idade" value="{{ $pacient->age }}" required>
 
                     <label for="peso">Peso:</label>
-                    <input type="number" id="peso" name="peso" required>
+                    <input type="number" id="peso" name="peso" value="{{ $pacient->weight }}" required>
                 </div>
                 <div class="form-column">
                     <label for="altura">Altura:</label>
-                    <input type="number" id="altura" name="altura" required>
+                    <input type="number" id="altura" name="altura" value="{{ $pacient->height }}" required>
 
                     <label for="reincidente">Reincidente:</label>
-                    <input type="text" id="reincidente" name="reincidente" required>
+                    <input type="text" id="reincidente" name="reincidente" value="{{ $pacient->relapses }}" required>
 
                     <label for="cor">Cor ou Raça:</label>
-                    <input type="text" id="cor" name="cor" required>
+                    <input type="text" id="cor" name="cor" value="{{ $pacient->race }}" required>
                 </div>
-                <button type="submit" style="display: none;">Editar</button>
-                <a href="{{ route('pacient') }}" class="button1">Editar</a>
+                <button type="submit">Salvar</button>
             </form>
+
         </div>
     </main>
 

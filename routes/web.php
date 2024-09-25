@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PacientController;
+use App\Http\Controllers\ImageController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
@@ -21,12 +22,17 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/doctor_dashboard', [PacientController::class, 'dashboard'])->name('doctor_dashboard');
 
+    Route::get('/doctor_dashboard', [PacientController::class, 'index'])->name('doctor_dashboard');
+
+
     
     /*Route::get('/edit_pacient', function () {
         return view('pacient.edit_pacient');
     })->name('edit_pacient');*/
 
-    // routes/web.php
+    
+    Route::put('/pacient/{id}', [PacientController::class, 'update'])->name('pacient.update');
+
     Route::get('/pacient/{id}/edit', [PacientController::class, 'edit'])->name('pacient.edit_pacient');
     Route::delete('/pacient/{id}', [PacientController::class, 'destroy'])->name('pacient.destroy');
 
@@ -49,14 +55,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/pacient', function () {
         return view('pacient.pacient');
     })->name('pacient');
+
+    Route::get('/pacient/{id}', [PacientController::class, 'show'])->name('pacient.pacient');
     
-    Route::get('/list_exam', function () {
-        return view('exam.list_exam');
-    })->name('list_exam');
+    
+
+    Route::get('/exam/list', [ImageController::class, 'list'])->name('exam.list');
     
     Route::get('/create_exam', function () {
         return view('exam.create_exam');
     })->name('create_exam');
+
+    Route::post('/exam/images/store', [ImageController::class, 'store'])->name('images.store');
     
     Route::get('/diary', function () {
         return view('diary.diary');
@@ -75,7 +85,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::post('/images', 'App\Http\Controllers\ImageController@store')->name('images.store');
+
 
 Route::get('/homepage', function () {
     return view('homepage');
