@@ -157,28 +157,29 @@
     </div>
 
     <div class="content">
-        <h1>Nome da Paciente</h1>
-        <div class="comment-section">
-            <div class="comment-header">
-                <h3>Data de criação e data de atualização</h3>
-                <div class="dropdown">
-                    <button class="edit-delete">⋮</button>
-                    <div class="dropdown-content">
-                        <a href="{{ route('edit_diary') }}">Editar</a>
-                        <a href="#">Excluir</a>
+        <h1>Comentários de {{ $paciente->name }}</h1>
+        @foreach ($comentarios as $comentario)
+            <div class="comment-section">
+                <div class="comment-header">
+                    <h3>{{ $comentario->created_at }}</h3>
+                    <div class="dropdown">
+                        <button class="edit-delete">⋮</button>
+                        <div class="dropdown-content">
+                            <a href="#">Excluir</a>
+                        </div>
                     </div>
                 </div>
+                <div class="content-area">
+                    {{ $comentario->comment }}
+                </div>
             </div>
-            <div class="content-area">
-                Conteúdo do comentário - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut auctor dolor dictum nulla bibendum ullamcorper. Curabitur feugiat auctor sapien, a suscipit elit molestie id. Morbi at tempor nulla. Phasellus eu eros sed lacus tempus posuere. Fusce pretium, elit vestibulum bibendum bibendum, erat ex sollicitudin nisi, at pretium magna est a ipsum. Phasellus gravida massa lorem, eu maximus mi tincidunt vestibulum. Aliquam et nunc sit amet mi vestibulum interdum. Donec quis tellus rhoncus augue egestas laoreet. Aenean vel porta ipsum. Aliquam quis vehicula arcu. Sed cursus, mi vitae dictum venenatis, lacus nulla fermentum ante, ac dignissim diam sem non mi.
-            </div>
-        </div>
+        @endforeach
         <div class="dropup position-absolute bottom-0 end-0 rounded-circle m-5">
-        <a href="{{ route('create_diary') }}">
-            <button type="button" class="floating-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-patch-plus" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5"/>
-                    <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911z"/>
+            <a href="{{ route('comment.create', ['pacient_id' => $paciente->id]) }}">
+                <button type="button" class="floating-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-patch-plus" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5"/>
+                        <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911z"/>
                 </svg>
             </button>
         </a>

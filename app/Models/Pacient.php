@@ -18,4 +18,9 @@ class Pacient extends Model
         'doctor_id',
         'relapses',
     ];
+
+    public function diagnosticos()
+    {
+        return $this->hasMany(Diagnosis::class, 'pacient_id');
+    }
 }

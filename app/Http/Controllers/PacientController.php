@@ -101,9 +101,18 @@ class PacientController extends Controller
 
     public function show($id)
     {
+        $paciente = Pacient::find($id);
+        $diagnostico = $paciente->diagnosticos()->first();
+
+        return view('pacient.pacient', compact('paciente', 'diagnostico'));
+    }
+
+
+    /*public function show($id)
+    {
         $paciente = Pacient::findOrFail($id);
         return view('pacient.pacient', compact('paciente'));
-    }
+    }*/
 
     public function index(Request $request)
     {

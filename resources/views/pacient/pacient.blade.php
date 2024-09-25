@@ -27,14 +27,22 @@
         </a>
     </div>
     <div class="container_pacient">
-        
         <header class="header_pacient">
             <h1 class="h1_pacient">{{ $paciente->name }}</h1>
         </header>
         <div class="cards1_pacient">
             <div class="card_pacient">
-                <h2> A paciente tem {{ $paciente->age }} anos  {{ $paciente->height }} {{ $paciente->weight }} {{ $paciente->race }} {{ $paciente->relapses }}</h2>
+                <h2>A paciente tem {{ $paciente->age }} anos, {{ $paciente->height }} de altura, {{ $paciente->weight }} de peso, raça {{ $paciente->race }}, e {{ $paciente->relapses }} recaídas.</h2>
                 <p>{{ $paciente->created_at }}</p>
+                @if ($diagnostico)
+                    <div class="card_diagnostico">
+                        <h3>Diagnóstico:</h3>
+                        <p>{{ $diagnostico->comment }}</p>
+                        <a href="{{ route('diagnosis.edit_diagnosis', $paciente->id) }}" class="btn">Editar</a>
+                    </div>
+                @else
+                    <a href="{{ route('diagnosis.create', ['pacient_id' => $paciente->id]) }}" class="btn btn-primary">Adicionar Diagnóstico</a>
+                @endif
             </div>
         </div>
         <div class="cards_pacient">
@@ -43,7 +51,7 @@
                 <img src="{{ asset('images/ultrassom-de-mama-1.webp') }}" class="image_pacient" alt="Imagem de Ultrassom">
             </div>
             <div class="card_low_pacient">
-                <a href="{{ route('diary') }}"><h2 class="image_title_pacient">Diário de Bolso</h2></a>
+                <a href="{{ route('comments.diary', ['pacient_id' => $paciente->id]) }}"><h2 class="image_title_pacient">Diário de Bolso</h2></a>
                 <img src="{{ asset('images/diary.avif') }}" class="image_pacient2" alt="Diário de Bolso">
             </div>
         </div>

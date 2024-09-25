@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inserir Comentário</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Editar Diagnóstico</title>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
     body {
         font-family: Arial, sans-serif;
@@ -137,19 +137,22 @@ button:hover {
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 14a4 4 0 10-8 0v6h8v-6zM12 4a4 4 0 100 8 4 4 0 000-8z" />
             </svg>
         </a>
-        <a href="#">
+        <a href="{{ route('diary') }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
             </svg>
         </a>
     </div>
-    <div class="comment-container">
-        <form action="{{ route('comment.store') }}" method="POST">
+    <div class="container">
+        <h1>Editar Diagnóstico de {{ $paciente->name }}</h1>
+        <form action="{{ route('diagnosis.update', $paciente->id) }}" method="POST">
             @csrf
-            <input type="hidden" name="paciente_id" value="{{ $paciente->id }}">
-            <label for="diagnostico">{{ $paciente->name }}</label>
-            <textarea id="comentario" name="comentario" placeholder="Escreva o comentário da consulta aqui..."></textarea>
-            <button type="submit" class="button1">Salvar</button>
+            @method('PUT')
+            <div class="form-group">
+                <label for="comment">Comentário:</label>
+                <textarea name="comment" id="comment" class="form-control">{{ $diagnostico->comment }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
     </div>
 </body>
