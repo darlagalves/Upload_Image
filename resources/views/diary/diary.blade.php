@@ -155,7 +155,6 @@
             </svg>
         </a>
     </div>
-
     <div class="content">
         <h1>Comentários de {{ $paciente->name }}</h1>
         @foreach ($comentarios as $comentario)
@@ -165,7 +164,11 @@
                     <div class="dropdown">
                         <button class="edit-delete">⋮</button>
                         <div class="dropdown-content">
-                            <a href="#">Excluir</a>
+                            <form action="{{ route('comment.destroy', $comentario->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este comentário?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" style="background: none; border: none; color: red; cursor: pointer;">Excluir</button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -28,7 +28,7 @@ class CommentsController extends Controller
             'created_at' => now(),
         ]);
 
-        return redirect()->route('diary.diary', $request->input('pacient_id'))->with('success', 'Comentário adicionado com sucesso!');
+        return redirect()->route('comments.diary', $request->input('pacient_id'))->with('success', 'Comentário adicionado com sucesso!');
     }
 
     public function index($pacient_id)
@@ -38,4 +38,17 @@ class CommentsController extends Controller
 
         return view('diary.diary', compact('paciente', 'comentarios'));
     }
+
+    public function destroy($id)
+    {
+        $comentario = Comment::find($id);
+
+        if ($comentario) {
+            $comentario->delete();
+            return redirect()->back()->with('success', 'Comentário excluído com sucesso.');
+        } else {
+            return redirect()->back()->with('error', 'Comentário não encontrado.');
+        }
+    }
+
 }

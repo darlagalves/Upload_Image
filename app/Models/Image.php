@@ -9,11 +9,11 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['path', 'name', 'doctor_id'];
+    protected $fillable = ['path', 'name', 'id_pacient'];
 
-    public function user()
+    public function pacient()
     {
-        return $this->belongsTo(User::class, 'doctor_id');
+        return $this->belongsTo(Pacient::class, 'id_pacient');
     }
 }
 

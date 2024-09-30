@@ -65,6 +65,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/comentario/create/{pacient_id}', [CommentsController::class, 'create'])->name('comment.create');
     Route::post('/comentario/store', [CommentsController::class, 'store'])->name('comment.store');
     Route::get('/comments/{pacient_id}', [CommentsController::class, 'index'])->name('comments.diary');
+    Route::delete('/comentario/{id}', [CommentsController::class, 'destroy'])->name('comment.destroy');
 
     Route::get('/diagnostico/create/{pacient_id}', [DiagnosesController::class, 'create'])->name('diagnosis.create');
     Route::post('/diagnostico/store', [DiagnosesController::class, 'store'])->name('diagnostico.store');
@@ -72,13 +73,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/diagnosis/{pacient_id}/edit', [DiagnosesController::class, 'edit'])->name('diagnosis.edit_diagnosis');
     Route::put('/diagnosis/{pacient_id}', [DiagnosesController::class, 'update'])->name('diagnosis.update');
 
-    Route::get('/exam/list', [ImageController::class, 'list'])->name('exam.list');
+    Route::get('/exame/{pacient_id}', [ImageController::class, 'list'])->name('exam.list');
+
+    Route::get('/exame/criar/{pacient_id}', [ImageController::class, 'create'])->name('exam.create');
+    Route::post('/exame/store', [ImageController::class, 'store'])->name('exam.store');
     
-    Route::get('/create_exam', function () {
+    
+    /*Route::get('/create_exam', function () {
         return view('exam.create_exam');
     })->name('create_exam');
 
-    Route::post('/exam/images/store', [ImageController::class, 'store'])->name('images.store');
+    Route::post('/exam/images/store', [ImageController::class, 'store'])->name('images.store');*/
     
     
     Route::get('/edit_diary', function () {

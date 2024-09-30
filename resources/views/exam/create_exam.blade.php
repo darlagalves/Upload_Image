@@ -248,8 +248,18 @@ body {
     </div>
     <div class="container">
         <div class="upload-section">
-            <form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+            <form action="{{ route('exam.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="paciente_id" value="{{ $paciente->id }}">
                 <label for="file-upload" class="upload-button">
                     <div class="arrow-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">

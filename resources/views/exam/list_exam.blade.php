@@ -238,7 +238,7 @@
         @endforeach
     </div>
     <div class="dropup position-absolute bottom-0 end-0 rounded-circle m-5">
-        <a href="{{ route('create_exam') }}">
+        <a href="{{ route('exam.create', ['pacient_id' => $paciente->id]) }}">
             <button type="button" class="floating-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-patch-plus" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5"/>

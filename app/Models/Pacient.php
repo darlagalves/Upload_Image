@@ -23,4 +23,20 @@ class Pacient extends Model
     {
         return $this->hasMany(Diagnosis::class, 'pacient_id');
     }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function doctor()
+    {
+        return $this->belongsTo(User::class, 'doctor_id', 'id'); // Relacionamento com médico
+    }
+    
 }

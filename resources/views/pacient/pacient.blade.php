@@ -47,7 +47,7 @@
         </div>
         <div class="cards_pacient">
             <div class="card_low_pacient">
-                <a href="{{ route('exam.list') }}"><h2 class="image_title_pacient">Imagens de Ultrassom</h2></a>
+                <a href="{{ route('exam.list', ['pacient_id' => $paciente->id]) }}"><h2 class="image_title_pacient">Imagens de Ultrassom</h2></a>
                 <img src="{{ asset('images/ultrassom-de-mama-1.webp') }}" class="image_pacient" alt="Imagem de Ultrassom">
             </div>
             <div class="card_low_pacient">

@@ -144,13 +144,15 @@ button:hover {
         </a>
     </div>
     <div class="comment-container">
-        <form action="{{ route('comment.store') }}" method="POST">
-            @csrf
-            <input type="hidden" name="paciente_id" value="{{ $paciente->id }}">
-            <label for="diagnostico">{{ $paciente->name }}</label>
-            <textarea id="comentario" name="comentario" placeholder="Escreva o comentário da consulta aqui..."></textarea>
-            <button type="submit" class="button1">Salvar</button>
-        </form>
+            <form action="{{ route('comment.store') }}" method="POST">
+                @csrf
+                <input type="hidden" name="pacient_id" value="{{ $paciente->id }}">
+                <div>
+                    <label for="comment">Comentário:</label>
+                    <textarea id="comment" name="comment" required></textarea>
+                </div>
+                <button type="submit">Salvar Comentário</button>
+            </form>
     </div>
 </body>
 </html>

@@ -15,7 +15,10 @@ return new class extends Migration
             Schema::create('images', function (Blueprint $table) {
                 $table->id();
                 $table->string('path');
-                $table->timestamps();  // Cria `created_at` e `updated_at`
+                $table->unsignedBigInteger('pacients_id');  
+                $table->timestamps();  // Cria `created_at` e `updated_at` 
+
+                $table->foreign('patient_id')->references('id')->on('pacients')->onDelete('cascade');
             });
         }
     }

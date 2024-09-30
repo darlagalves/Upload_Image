@@ -34,6 +34,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Image;
+use App\Models\Pacient;
+
 
 class ImageController extends Controller
 {
@@ -41,6 +43,7 @@ class ImageController extends Controller
     {
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'paciente_id' => 'required|integer',
         ]);
 
         $imageName = time().'.'.$request->image->extension();  
@@ -49,16 +52,30 @@ class ImageController extends Controller
         $image = new Image();
         $image->path = $imageName;
         $image->name = $request->image->getClientOriginalName();
-        $image->doctor_id = Auth::id();
+        $image->id_pacient = $request->input('paciente_id');
         $image->save();
 
-        return redirect()->route('list_exam')->with('success', 'Imagem carregada com sucesso.');
+        return redirect()->route('exam.list', ['pacient_id' => $request->paciente_id]);
     }
 
-    public function list()
+    public function create($pacient_id)
     {
-        $images = Image::where('doctor_id', Auth::id())->get();
-        return view('exam.list_exam', compact('images'));
+        $paciente = Pacient::find($pacient_id);
+        return view('exam.create_exam', compact('paciente'));
     }
+
+
+    public function list($paciente_id)
+    {
+        // Busca o paciente pelo ID, caso não encontre retorna um 404.
+        $paciente = Pacient::findOrFail($paciente_id);
+        
+        // Busca todas as imagens associadas ao paciente usando o 'id_pacient'.
+        $images = Image::where('id_pacient', $paciente_id)->get();
+
+        // Retorna a view com o paciente e as imagens
+        return view('exam.list_exam', compact('paciente', 'images'));
+    }
+
 }
 
