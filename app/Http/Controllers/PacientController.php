@@ -88,7 +88,7 @@ class PacientController extends Controller
         // Salva as alterações
         $paciente->save();
 
-        return redirect()->route('pacient')->with('success', 'Paciente atualizado com sucesso.');
+        return redirect()->route('doctor_dashboard')->with('success', 'Paciente atualizado com sucesso.');
     }
 
 

@@ -9,6 +9,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="body_cadastrarp">
+    <main class="content-pacient">
     <div class="sidebar">
         <a href="#">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -32,13 +33,15 @@
         </header>
         <div class="cards1_pacient">
             <div class="card_pacient">
-                <h2>A paciente tem {{ $paciente->age }} anos, {{ $paciente->height }} de altura, {{ $paciente->weight }} de peso, raça {{ $paciente->race }}, e {{ $paciente->relapses }} recaídas.</h2>
+                <h2>A paciente tem {{ $paciente->age }} anos, {{ $paciente->height }}cm de altura, {{ $paciente->weight }}kg de peso, se identifica como {{ $paciente->race }}, e {{ $paciente->relapses }} tem histórico anterior com a doença.</h2>
                 <p>{{ $paciente->created_at }}</p>
+            </div>
+            <div class="card_pacient">
                 @if ($diagnostico)
                     <div class="card_diagnostico">
                         <h3>Diagnóstico:</h3>
                         <p>{{ $diagnostico->comment }}</p>
-                        <a href="{{ route('diagnosis.edit_diagnosis', $paciente->id) }}" class="btn">Editar</a>
+                        <a href="{{ route('diagnosis.edit_diagnosis', $paciente->id) }}" class="btn botao-editar-diag">Editar</a>
                     </div>
                 @else
                     <a href="{{ route('diagnosis.create', ['pacient_id' => $paciente->id]) }}" class="btn btn-primary">Adicionar Diagnóstico</a>
@@ -47,14 +50,15 @@
         </div>
         <div class="cards_pacient">
             <div class="card_low_pacient">
-                <a href="{{ route('exam.list', ['pacient_id' => $paciente->id]) }}"><h2 class="image_title_pacient">Imagens de Ultrassom</h2></a>
+                <a href="{{ route('exam.list', ['pacient_id' => $paciente->id]) }}" class="image_title_pacient_a"><h2 class="image_title_pacient">Imagens de Ultrassom</h2></a>
                 <img src="{{ asset('images/ultrassom-de-mama-1.webp') }}" class="image_pacient" alt="Imagem de Ultrassom">
             </div>
             <div class="card_low_pacient">
-                <a href="{{ route('comments.diary', ['pacient_id' => $paciente->id]) }}"><h2 class="image_title_pacient">Diário de Bolso</h2></a>
-                <img src="{{ asset('images/diary.avif') }}" class="image_pacient2" alt="Diário de Bolso">
+                <a href="{{ route('comments.diary', ['pacient_id' => $paciente->id]) }}" class="image_title_pacient_a"><h2 class="image_title_pacient">Diário de Bolso</h2></a>
+                <img src="{{ asset('images/archive.png') }}" class="image_pacient2" alt="Diário de Bolso">
             </div>
         </div>
     </div>
+</main>
 </body>
 </html>

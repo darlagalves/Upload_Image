@@ -29,11 +29,9 @@
     </div>
     <main class="content">
     <div class="container_cadastrarp">
-        <!-- Avatar (Imagem ou ícone) -->
         <div class="avatar">
             <img src="images/pink-icon.png" alt="Avatar">
         </div>
-
         <h2 class="h2_cadastrarp">Cadastro de Pacientes</h2>
 
         <form class="form_cadastrarp" action="{{ route('create_pacient') }}" method="post">
