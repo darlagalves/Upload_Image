@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carregar Imagem</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @vite('resources/css/app.css')
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
                body {
     font-family: Arial, sans-serif;
@@ -231,19 +233,13 @@ body {
     @endif
     <div class="sidebar">
         <a href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <i class="fa-regular fa-circle-user fa-2xl fa-10x"></i>
         </a>
         <a href="{{ route('doctor_dashboard') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9m0 0l9 9m-9-9v18" />
-            </svg>
+            <i class="fa-solid fa-house fa-2xl fa-6x"></i>
         </a>
         <a href="{{ route('pacient') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 14a4 4 0 10-8 0v6h8v-6zM12 4a4 4 0 100 8 4 4 0 000-8z" />
-            </svg>
+            <i class="fa-regular fa-id-card fa-2xl fa-6x"></i>
         </a>
     </div>
     <div class="container">
@@ -276,6 +272,7 @@ body {
             </form>
         </div>
     </div>
+    <script src="https://kit.fontawesome.com/c036ae9ebf.js" crossorigin="anonymous"></script>
 </body>
 <script>
 document.getElementById('file-upload').addEventListener('change', function(event) {

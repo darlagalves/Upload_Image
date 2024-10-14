@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card de Diagnóstico</title>
-    <link rel="stylesheet" href="styles.css">
+    @vite('resources/css/app.css')
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,23 +44,7 @@
     justify-content: center; /* Centraliza os cards */
 }
 
-.card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 300px;
-    text-align: center;
-    margin-bottom: 20px;
-}
 
-.card h2 {
-    background-color: #ffcccb;
-    padding: 10px;
-    border-radius: 8px 8px 0 0;
-    margin: -20px -20px 20px -20px;
-    color: #333;
-}
 
 /* Define um tamanho fixo para as imagens e centraliza */
 .ultrasound img {
@@ -84,26 +68,7 @@
     fill: currentColor;
 }
 
-/* Espaçamento maior para a área de notas */
-.notes {
-    border: 2px solid gray;
-    border-radius: 8px;
-    padding: 15px; /* Aumenta o espaço interno */
-    text-align: left;
-    margin-top: 20px;
-}
 
-.notes p {
-    margin-bottom: 15px; /* Aumenta o espaço entre os parágrafos */
-}
-
-.notes textarea {
-    width: 100%;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-top: 10px; /* Espaçamento acima do textarea */
-}
 
 
         .fixed {
@@ -112,36 +77,7 @@
             background-color: #FFC0CB; /* Rosa */
         }
 
-        .fixed svg {
-            /* Reduz o tamanho dos ícones */
-            margin-left: 10px;
-            width: 4.5rem;
-            height: 4.5rem; 
-            color: white; /* Define a cor dos ícones como branco */
-        }
-
-        .floating-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #17a2b8; /* Cor de fundo */
-            color: white; /* Cor do texto */
-            border: none;
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            z-index: 1000; /* Garante que o botão fique acima de outros elementos */
-        }
-
-        .floating-btn svg {
-            width: 40px;
-            height: 40px;
-        }
+        
 
         /* Estilos para o modal */
         .modal {
@@ -193,28 +129,21 @@
         }
     </style>
 </head>
-<body>
+<body class="body_cadastrarp">
     <div class="sidebar">
         <a href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <i class="fa-regular fa-circle-user fa-2xl fa-10x"></i>
         </a>
         <a href="{{ route('doctor_dashboard') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9m0 0l9 9m-9-9v18" />
-            </svg>
+            <i class="fa-solid fa-house fa-2xl fa-6x"></i>
         </a>
         <a href="{{ route('pacient') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 14a4 4 0 10-8 0v6h8v-6zM12 4a4 4 0 100 8 4 4 0 000-8z" />
-            </svg>
+            <i class="fa-regular fa-id-card fa-2xl fa-6x"></i>
         </a>
     </div>
-
-    <div class="content">
+    <div class="content-exam">
         @foreach($images as $image)
-            <div class="card">
+        <div class="card-ult">
                 <h2>{{ $image->created_at->format('d/m/Y') }}</h2>
                 <div class="ultrasound">
                     <img src="{{ asset('storage/images/' . $image->path) }}" alt="{{ $image->name }}">
@@ -253,7 +182,7 @@
         <img class="modal-content" id="img01">
         <div id="caption"></div>
     </div>
-
+    <script src="https://kit.fontawesome.com/c036ae9ebf.js" crossorigin="anonymous"></script>
 </body>
 <script>
     // Obtenha o modal

@@ -9,30 +9,25 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="body_cadastrarp">
-    <main class="content-pacient">
     <div class="sidebar">
         <a href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <i class="fa-regular fa-circle-user fa-2xl fa-10x"></i>
         </a>
         <a href="{{ route('doctor_dashboard') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9m0 0l9 9m-9-9v18" />
-            </svg>
+            <i class="fa-solid fa-house fa-2xl fa-6x"></i>
         </a>
         <a href="{{ route('pacient') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 14a4 4 0 10-8 0v6h8v-6zM12 4a4 4 0 100 8 4 4 0 000-8z" />
-            </svg>
+            <i class="fa-regular fa-id-card fa-2xl fa-6x"></i>
         </a>
     </div>
+    <main class="content-pacient">
     <div class="container_pacient">
         <header class="header_pacient">
             <h1 class="h1_pacient">{{ $paciente->name }}</h1>
         </header>
         <div class="cards1_pacient">
             <div class="card_pacient">
+                <div class="conteudo_card_pacient"></div>
                 <h2>A paciente tem {{ $paciente->age }} anos, {{ $paciente->height }}cm de altura, {{ $paciente->weight }}kg de peso, se identifica como {{ $paciente->race }}, e {{ $paciente->relapses }} tem histórico anterior com a doença.</h2>
                 <p>{{ $paciente->created_at }}</p>
             </div>
@@ -44,7 +39,7 @@
                         <a href="{{ route('diagnosis.edit_diagnosis', $paciente->id) }}" class="btn botao-editar-diag">Editar</a>
                     </div>
                 @else
-                    <a href="{{ route('diagnosis.create', ['pacient_id' => $paciente->id]) }}" class="btn btn-primary">Adicionar Diagnóstico</a>
+                    <a href="{{ route('diagnosis.create', ['pacient_id' => $paciente->id]) }}" class="btn  botao-add-diag">Adicionar Diagnóstico</a>
                 @endif
             </div>
         </div>
@@ -60,5 +55,6 @@
         </div>
     </div>
 </main>
+<script src="https://kit.fontawesome.com/c036ae9ebf.js" crossorigin="anonymous"></script>
 </body>
 </html>

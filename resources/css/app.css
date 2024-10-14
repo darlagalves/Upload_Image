@@ -71,6 +71,16 @@
     height: 100vh;
 }
 
+.content-exam {
+    margin-top: 30%;
+    margin-left: 120px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Centraliza os cards */
+}
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -246,6 +256,17 @@
     .button_cadastrarp {
         width: 80%;
     }
+    .container-edit-diagnosis {
+        padding: 10px;
+    }
+
+    .form-group-edit-diagnosis {
+        max-width: 100%;
+    }
+
+    .btn-edit-diagnosis {
+        width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -258,14 +279,22 @@
         padding: 5px;
     }
 
-    .container_cadastrarp {
+    .container_cadastrarp, .container-edit-diagnosis {
         padding: 10px;
+        width: 100%; /* Ajuste total para telas pequenas */
     }
 
-    .button_cadastrarp {
+    .button_cadastrarp, .btn-edit-diagnosis {
         width: 100%;
     }
+
+    .form_cadastrarp, .form-edit-diagnosis {
+        display: block; /* Muda de grid para bloco em telas menores */
+        width: 100%;
+    }
+
 }
+
 
 .cards1_pacient, .cards_pacient {
     display: flex;
@@ -284,6 +313,12 @@
     max-width: 400px;
     justify-content: center;
     text-align: center;
+}
+
+.conteudo_card_pacient{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); 
 }
 
 .card_pacient h2, .card_low_pacient h2 {
@@ -358,4 +393,232 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.botao-add-diag {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); 
+    width: 40%;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    background-color: #ffc1d0;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 40px;
+    grid-column: span 2;
+    text-decoration: none;
+}
+
+.botao-add-diag:hover {
+    background-color: #FF3D68;
+    text-decoration: none;
+    color: white;
+    border: 2px solid white;
+}
+
+/* Ajustes gerais da página de diagnóstico */
+.container-edit-diagnosis {
+    width: 100%;
+    max-width: 90%; 
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px; 
+    text-align: center;
+}
+
+.h1-edit-diagnosis {
+    color: #FF6F91;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Formulário de edição */
+.form-edit-diagnosis {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.form-group-edit-diagnosis {
+    width: 100%;
+    max-width: 1100px;
+    text-align: left;
+}
+
+.label-edit-diagnosis {
+    font-size: 18px;
+    color: #FF6F91;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.textarea-edit-diagnosis {
+    width: 100%;
+    height: 350px;
+    border: 1px solid #FFB6C1;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #FFF5F8;
+    color: #333;
+    outline: none;
+    resize: none;
+}
+
+.textarea-edit-diagnosis:focus {
+    border-color: #FF6F91;
+}
+
+/* Botão de salvar */
+.btn-edit-diagnosis {
+    background-color: #FF6F91;
+    color: white;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit-diagnosis:hover {
+    background-color: #FF3D68;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-bottom: 5px; /* Espaço entre a barra de pesquisa e os cards */
+}
+
+.search-doctor-dashboard {
+    max-width: 1000px; /* Define uma largura máxima para a barra de pesquisa */
+    width: 100%;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.search-doctor-dashboard {
+    max-width: 400px;
+    margin: auto;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 10px; /* Bordas arredondadas */
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.card-title {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.card-title-a{
+    text-decoration: none;
+}
+
+.card-text {
+    color: #777;
+}
+
+.btn-primary {
+    background-color: #00abe4; /* Cor mais suave para o botão de editar */
+    border: none;
+    border-radius: 20px; /* Bordas arredondadas */
+}
+
+.btn-danger {
+    background-color: #f44336; /* Cor mais suave para o botão de excluir */
+    border: none;
+    border-radius: 20px; /* Bordas arredondadas */
+}
+
+.dropup .btn-info {
+    background-color: #00bfff; /* Cor do botão de adicionar paciente */
+    border-radius: 20%;
+}
+
+/* Melhorar espaçamento entre os cards */
+.row .col-md-4 {
+    margin-bottom: 20px;
+}
+
+.fixed svg {
+    /* Reduz o tamanho dos ícones */
+    margin-left: 10px;
+    width: 4.5rem;
+    height: 4.5rem; 
+    color: white; /* Define a cor dos ícones como branco */
+}
+
+.floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #FF6F91; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000; /* Garante que o botão fique acima de outros elementos */
+}
+
+.floating-btn svg {
+    width: 40px;
+    height: 40px;
+}
+
+.notes {
+    border: 2px solid gray;
+    border-radius: 8px;
+    padding: 15px; /* Aumenta o espaço interno */
+    text-align: left;
+    margin-top: 20px;
+}
+
+.notes p {
+    margin-bottom: 15px; /* Aumenta o espaço entre os parágrafos */
+}
+
+.notes textarea {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px; /* Espaçamento acima do textarea */
+}
+
+.card-ult {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card-ult h2 {
+    background-color: #FF6F91;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    margin: -20px -20px 20px -20px;
+    color: #333;
 }

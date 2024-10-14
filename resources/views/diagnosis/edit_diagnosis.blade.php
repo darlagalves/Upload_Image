@@ -4,156 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Diagnóstico</title>
+    @vite('resources/css/app.css')
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        display: flex;
-        margin: 0;
-    }
-
-    .sidebar {
-        position: fixed; /* Mantém a sidebar fixa */
-        top: 0;
-        left: 0;
-        width: 100px;
-        max-width: 200px;
-        height: 100vh; /* Ocupa toda a altura da tela */
-        background-color: #FFC0CB;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 20px;
-    }
-
-    .sidebar svg {
-        margin-bottom: 20px;
-        width: 40px;
-        height: 40px;
-        color: white;
-    }
-
-    .content {
-        margin-left: 120px; /* Garante que o conteúdo não sobreponha a sidebar */
-        padding: 20px;
-        flex: 1;
-    }
-
-    .icons {
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 20px;
-    }
-
-    .icons svg {
-        width: 40px;
-        height: 40px;
-        fill: currentColor;
-    }
-
-    body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-}
-
-.comment-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    padding: 40px;
-    margin-left: 100px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    height: 80%;
-}
-
-label {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-textarea {
-    width: 100%;
-    height: 70%;
-    border: 2px solid pink;
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 18px;
-    resize: none;
-    margin-bottom: 20px;
-}
-
-button {
-    background-color: pink;
-    border: none;
-    border-radius: 5px;
-    padding: 15px 30px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #ff69b4;
-}
-
-.button1 {
-    background-color: pink;
-    border: none;
-    border-radius: 5px;
-    padding: 15px 30px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-.button1:hover {
-    background-color: #ff69b4;
-}
-
-
-    </style>
 </head>
-<body>
+<body class="body_cadastrarp">
+    <main class="content">
     <div class="sidebar">
         <a href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <i class="fa-regular fa-circle-user fa-2xl fa-10x"></i>
         </a>
         <a href="{{ route('doctor_dashboard') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9m0 0l9 9m-9-9v18" />
-            </svg>
+            <i class="fa-solid fa-house fa-2xl fa-6x"></i>
         </a>
         <a href="{{ route('pacient') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 14a4 4 0 10-8 0v6h8v-6zM12 4a4 4 0 100 8 4 4 0 000-8z" />
-            </svg>
-        </a>
-        <a href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
-            </svg>
+            <i class="fa-regular fa-id-card fa-2xl fa-6x"></i>
         </a>
     </div>
-    <div class="container">
-        <h1>Editar Diagnóstico de {{ $paciente->name }}</h1>
-        <form action="{{ route('diagnosis.update', $paciente->id) }}" method="POST">
+    <div class="container-edit-diagnosis">
+        <h1 class="h1-edit-diagnosis">Editar Diagnóstico de {{ $paciente->name }}</h1>
+        <form class="form-edit-diagnosis" action="{{ route('diagnosis.update', $paciente->id) }}" method="POST">
             @csrf
             @method('PUT')
-            <div class="form-group">
-                <label for="comment">Comentário:</label>
-                <textarea name="comment" id="comment" class="form-control">{{ $diagnostico->comment }}</textarea>
+            <div class="form-wrapper"></div>
+            <div class="form-group-edit-diagnosis">
+                <label class="label-edit-diagnosis" for="comment">Comentário:</label>
+                <textarea name="comment" id="comment" class="form-control textarea-edit-diagnosis">{{ $diagnostico->comment }}</textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-edit-diagnosis">Salvar</button>
         </form>
     </div>
+</main>
+<script src="https://kit.fontawesome.com/c036ae9ebf.js" crossorigin="anonymous"></script>
 </body>
 </html>

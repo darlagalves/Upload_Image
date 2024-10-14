@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Comentários do Paciente</title>
+@vite('resources/css/app.css')
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <style>
   body {
         font-family: Arial, sans-serif;
@@ -113,46 +117,19 @@
         padding: 10px;
     } /* Estilo para área de conteúdo abaixo dos cabeçalhos */
 
-    .floating-btn {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: #17a2b8; /* Cor de fundo */
-        color: white; /* Cor do texto */
-        border: none;
-        border-radius: 50%;
-        width: 80px;
-        height: 80px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        z-index: 1000; /* Garante que o botão fique acima de outros elementos */
-    }
-
-    .floating-btn svg {
-        width: 40px;
-        height: 40px;
-    }
+    
 </style>
 </head>
-<body>
+<body class="body_cadastrarp">
     <div class="sidebar">
         <a href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <i class="fa-regular fa-circle-user fa-2xl fa-10x"></i>
         </a>
         <a href="{{ route('doctor_dashboard') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9m0 0l9 9m-9-9v18" />
-            </svg>
+            <i class="fa-solid fa-house fa-2xl fa-6x"></i>
         </a>
         <a href="{{ route('pacient') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 14a4 4 0 10-8 0v6h8v-6zM12 4a4 4 0 100 8 4 4 0 000-8z" />
-            </svg>
+            <i class="fa-regular fa-id-card fa-2xl fa-6x"></i>
         </a>
     </div>
     <div class="content">
@@ -186,7 +163,9 @@
                 </svg>
             </button>
         </a>
+        </div>
     </div>
-    </div>
+    <script src="https://kit.fontawesome.com/c036ae9ebf.js" crossorigin="anonymous"></script>
+
 </body>
 </html>
