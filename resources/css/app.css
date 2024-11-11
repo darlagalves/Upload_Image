@@ -5,7 +5,7 @@
     margin-top: 40px;
 }
 .boxprincipal {
-    background: linear-gradient(135deg, #faaade 0%, #a30064 100%);
+    background: linear-gradient(135deg, #ffd0db 0%, #FF6F91 100%);
     background-attachment: fixed;
 }
 
@@ -26,21 +26,21 @@
 }
 
 .titulologin {
-    color: #a30064;
+    color: #FF6F91;
     text-align: center;
     padding: 10px;
 }
 
 .botaologin-principal {
     color: #FFFFFF;
-    background-color: #a30064;
+    background-color: #FF6F91;
     width: 200px;
     margin-left: 100px;
     margin-top: 40px;
 }
 
 .botaologin-principal:hover {
-    border: 1px solid #a30064;
+    border: 1px solid #FF6F91;
     border-radius: 10px;
     color: black;
 }

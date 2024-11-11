@@ -35,6 +35,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Image;
 use App\Models\Pacient;
+use Illuminate\Support\Facades\Http;
+
 
 
 class ImageController extends Controller
@@ -46,13 +48,27 @@ class ImageController extends Controller
             'paciente_id' => 'required|integer',
         ]);
 
+        // Salva a imagem no storage
         $imageName = time().'.'.$request->image->extension();  
-        $request->image->storeAs('images', $imageName, 'public');
+        $imagePath = $request->image->storeAs('images', $imageName, 'public');
 
+        // Converte a imagem para base64
+        $imageData = base64_encode(file_get_contents(storage_path("app/public/$imagePath")));
+
+        // Envia a imagem em base64 para o servidor Flask e obtém a resposta
+        $response = Http::post('http://127.0.0.1:5000/predict', [
+            'image_base64' => $imageData,
+        ]);
+
+        // Extrai o resultado da previsão
+        $networkResult = $response->json()['predicted_class'];
+
+        // Salva o caminho da imagem e o resultado da rede neural no banco
         $image = new Image();
         $image->path = $imageName;
         $image->name = $request->image->getClientOriginalName();
         $image->id_pacient = $request->input('paciente_id');
+        $image->network_result = $networkResult; // Armazena o resultado da previsão
         $image->save();
 
         return redirect()->route('exam.list', ['pacient_id' => $request->paciente_id]);

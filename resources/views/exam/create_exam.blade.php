@@ -123,7 +123,7 @@ header .icon img {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #FFE4E1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -144,7 +144,7 @@ body {
 
         /* Upload Section */
         .upload-section {
-            background-color: #FCCDD3;
+            background-color: #FFC0CB;
             padding: 40px;
             border-radius: 10px;
             text-align: center;
